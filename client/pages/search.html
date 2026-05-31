@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <title>Search - GlobalChat</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <style>
+        .search-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        .search-page h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .search-page .subtitle {
+            color: var(--gray-medium);
+            margin-bottom: 32px;
+        }
+        .search-main-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--radius-md);
+            font-size: 1.05rem;
+            outline: none;
+            font-family: var(--font-family);
+            transition: border-color 0.2s;
+            margin-bottom: 16px;
+        }
+        .search-main-input:focus {
+            border-color: var(--anthracite);
+        }
+        .search-filters-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .search-filters-row input,
+        .search-filters-row select {
+            flex: 1;
+            min-width: 160px;
+            padding: 10px 14px;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            outline: none;
+            font-family: var(--font-family);
+        }
+        .search-filters-row input:focus,
+        .search-filters-row select:focus {
+            border-color: var(--anthracite);
+        }
+        .search-results-page {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .search-result-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius-md);
+            transition: box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .search-result-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+        .result-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .result-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .result-avatar-placeholder {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--gray-medium);
+            flex-shrink: 0;
+        }
+        .result-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .result-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .result-name span {
+            font-weight: 400;
+            color: var(--gray-medium);
+            font-size: 0.85rem;
+        }
+        .result-details {
+            font-size: 0.82rem;
+            color: var(--gray-medium);
+            margin-top: 2px;
+        }
+        .result-status {
+            font-size: 0.78rem;
+            margin-top: 2px;
+        }
+        .result-status.online { color: var(--success); }
+        .result-status.offline { color: var(--gray-medium); }
+        .search-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray-medium);
+        }
+        .search-empty svg {
+            margin-bottom: 16px;
+            opacity: 0.4;
+        }
+        .search-empty h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--anthracite);
+        }
+        .search-count {
+            font-size: 0.85rem;
+            color: var(--gray-medium);
+            margin-bottom: 16px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+            margin-bottom: 24px;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: var(--anthracite);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="/" class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#2F2F2F"/><path d="M8 20V12L12 8H20L24 12V20L20 24H12L8 20Z" stroke="#FAF7F0" stroke-width="1.5" fill="none"/><circle cx="13" cy="16" r="1.5" fill="#FAF7F0"/><circle cx="16" cy="16" r="1.5" fill="#FAF7F0"/><circle cx="19" cy="16" r="1.5" fill="#FAF7F0"/></svg>
+                    <span class="logo-text">GlobalChat</span>
+                </a>
+            </div>
+            <div class="sidebar-user">
+                <div class="user-avatar" id="sidebarAvatar">
+                    <img src="" alt="Avatar" id="avatarImg" style="display:none;">
+                    <div class="avatar-placeholder" id="avatarPlaceholder"></div>
+                </div>
+                <div class="user-info">
+                    <span class="user-name" id="sidebarName">Loading...</span>
+                    <span class="user-status" id="sidebarStatus">online</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="/pages/dashboard.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    <span>Messages</span>
+                </a>
+                <a href="/pages/search.html" class="nav-item active">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <span>Search</span>
+                </a>
+
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn btn-outline btn-sm btn-full">Sign Out</button>
+            </div>
+        </aside>
+        <div class="main-content">
+            <div class="search-page">
+                <a href="/pages/dashboard.html" class="back-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    Back to Messages
+                </a>
+                <h1>Find People</h1>
+                <p class="subtitle">Search for users by name, country, language, or interests.</p>
+
+                <input type="text" id="searchInput" class="search-main-input" placeholder="Search by name, username, or keyword..." autofocus>
+                <div class="search-filters-row">
+                    <input type="text" id="filterCountry" placeholder="Country">
+                    <input type="text" id="filterLanguage" placeholder="Language">
+                    <input type="text" id="filterInterest" placeholder="Interest">
+                </div>
+
+                <div id="searchCount" class="search-count"></div>
+                <div class="search-results-page" id="searchResults">
+                    <div class="search-empty">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#B5B5B5" stroke-width="1"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                        <h3>Discover people around the world</h3>
+                        <p>Start typing to find someone to chat with.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/socket.js"></script>
+    <script src="/js/search-page.js"></script>
+</body>
+</html>

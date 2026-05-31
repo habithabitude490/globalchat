@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <title>Admin Panel - GlobalChat</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="dashboard-body">
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+            </div>
+            <nav class="admin-nav">
+                <a href="#" class="nav-item active" data-section="overview">Overview</a>
+                <a href="#" class="nav-item" data-section="users">Users</a>
+                <a href="#" class="nav-item" data-section="reports">Reports</a>
+                <a href="#" class="nav-item" data-section="logs">Activity Logs</a>
+                <a href="/pages/dashboard.html" class="nav-item">Back to Dashboard</a>
+            </nav>
+        </aside>
+        <main class="admin-main">
+            <div id="overviewSection" class="admin-section">
+                <h1>Overview</h1>
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card">
+                        <span class="stat-number" id="statTotalUsers">-</span>
+                        <span class="stat-label">Total Users</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="statOnlineUsers">-</span>
+                        <span class="stat-label">Online Now</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="statVerifiedUsers">-</span>
+                        <span class="stat-label">Verified</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="statBannedUsers">-</span>
+                        <span class="stat-label">Banned</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="statTodayUsers">-</span>
+                        <span class="stat-label">Joined Today</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="statConversations">-</span>
+                        <span class="stat-label">Conversations</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="statMessages">-</span>
+                        <span class="stat-label">Messages</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="statPendingReports">-</span>
+                        <span class="stat-label">Pending Reports</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="usersSection" class="admin-section" style="display:none;">
+                <div class="section-header">
+                    <h1>User Management</h1>
+                    <div class="search-bar">
+                        <input type="text" id="adminUserSearch" placeholder="Search users...">
+                    </div>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Country</th>
+                                <th>Status</th>
+                                <th>Verified</th>
+                                <th>Joined</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUsersTable"></tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="usersPagination"></div>
+            </div>
+
+            <div id="reportsSection" class="admin-section" style="display:none;">
+                <div class="section-header">
+                    <h1>Reports</h1>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Reporter</th>
+                                <th>Reported User</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminReportsTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="logsSection" class="admin-section" style="display:none;">
+                <div class="section-header">
+                    <h1>Activity Logs</h1>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Admin</th>
+                                <th>Action</th>
+                                <th>Target</th>
+                                <th>IP</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminLogsTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/js/auth.js"></script>
+    <script src="/js/admin.js"></script>
+</body>
+</html>

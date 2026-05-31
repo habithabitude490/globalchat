@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <title>Settings - GlobalChat</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="/" class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#2F2F2F"/><path d="M8 20V12L12 8H20L24 12V20L20 24H12L8 20Z" stroke="#FAF7F0" stroke-width="1.5" fill="none"/><circle cx="13" cy="16" r="1.5" fill="#FAF7F0"/><circle cx="16" cy="16" r="1.5" fill="#FAF7F0"/><circle cx="19" cy="16" r="1.5" fill="#FAF7F0"/></svg>
+                    <span class="logo-text">GlobalChat</span>
+                </a>
+            </div>
+            <div class="sidebar-user">
+                <div class="user-avatar" id="sidebarAvatar">
+                    <img src="" alt="Avatar" id="avatarImg" style="display:none;">
+                    <div class="avatar-placeholder" id="avatarPlaceholder"></div>
+                </div>
+                <div class="user-info">
+                    <span class="user-name" id="sidebarName">Loading...</span>
+                    <span class="user-status">online</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="/pages/dashboard.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    <span>Messages</span>
+                </a>
+                <a href="/pages/chat.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+                    <span>Chat</span>
+                </a>
+                <a href="/pages/search.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <span>Search</span>
+                </a>
+
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn btn-outline btn-sm btn-full">Sign Out</button>
+            </div>
+        </aside>
+        <div class="main-content profile-page">
+            <div class="profile-container">
+                <div class="settings-section">
+                    <h2>Profile Settings</h2>
+                    <form id="settingsForm">
+                        <div class="form-group">
+                            <label for="settingsName">Display Name</label>
+                            <input type="text" id="settingsName" name="display_name" maxlength="60">
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsBio">Biography</label>
+                            <textarea id="settingsBio" name="biography" maxlength="500" rows="3"></textarea>
+                            <span class="form-hint" id="bioCount">0/500</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsCountry">Country</label>
+                            <select id="settingsCountry" name="country">
+                                <option value="">Select your country</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Languages Spoken</label>
+                            <div class="multi-select" id="languagesContainer">
+                                <input type="text" id="languageInput" placeholder="Type to add a language...">
+                                <div class="selected-items" id="selectedLanguages"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Interests</label>
+                            <div class="multi-select" id="interestsContainer">
+                                <input type="text" id="interestInput" placeholder="Type to add an interest...">
+                                <div class="selected-items" id="selectedInterests"></div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <div id="settingsSuccess" class="alert alert-success" style="display:none;"></div>
+                        <div id="settingsError" class="alert alert-error" style="display:none;"></div>
+                    </form>
+                </div>
+                <div class="settings-section">
+                    <h2>Blocked Users</h2>
+                    <div id="blockedUsersList">
+                        <p class="text-muted">No blocked users.</p>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h2>Privacy</h2>
+                    <p>Your profile is visible to all registered users. You can block specific users from contacting you.</p>
+                    <a href="/pages/privacy.html" class="btn btn-outline btn-sm">View Privacy Policy</a>
+                </div>
+                <div class="settings-section settings-danger">
+                    <h2>Account</h2>
+                    <p>Manage your account preferences and security settings.</p>
+                    <button class="btn btn-outline btn-sm" id="changePasswordBtn">Change Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/auth.js"></script>
+    <script src="/js/socket.js"></script>
+    <script src="/js/profile.js"></script>
+</body>
+</html>

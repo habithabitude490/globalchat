@@ -1,0 +1,14 @@
+{
+  "buildCommand": "npm install",
+  "outputDirectory": "client",
+  "routes": [
+    { "src": "/api/(.*)", "dest": "api/index.js" },
+    { "src": "/uploads/(.*)", "dest": "api/index.js" }
+  ],
+  "functions": {
+    "api/index.js": {
+      "memory": 512,
+      "maxDuration": 30
+    }
+  }
+}

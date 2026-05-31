@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <title>Dashboard - GlobalChat</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="/" class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="#2F2F2F"/>
+                        <path d="M8 20V12L12 8H20L24 12V20L20 24H12L8 20Z" stroke="#FAF7F0" stroke-width="1.5" fill="none"/>
+                        <circle cx="13" cy="16" r="1.5" fill="#FAF7F0"/>
+                        <circle cx="16" cy="16" r="1.5" fill="#FAF7F0"/>
+                        <circle cx="19" cy="16" r="1.5" fill="#FAF7F0"/>
+                    </svg>
+                    <span class="logo-text">GlobalChat</span>
+                </a>
+            </div>
+            <div class="sidebar-user">
+                <div class="user-avatar" id="sidebarAvatar">
+                    <img src="" alt="Avatar" id="avatarImg" style="display:none;">
+                    <div class="avatar-placeholder" id="avatarPlaceholder"></div>
+                </div>
+                <div class="user-info">
+                    <span class="user-name" id="sidebarName">Loading...</span>
+                    <span class="user-status" id="sidebarStatus">online</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="messages">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    <span>Messages</span>
+                    <span class="badge" id="unreadBadge" style="display:none;">0</span>
+                </a>
+                <a href="/pages/chat.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+                    <span>Chat</span>
+                </a>
+                <a href="/pages/search.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <span>Search</span>
+                </a>
+                <a href="#" class="nav-item" data-section="contacts">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    <span>Contacts</span>
+                </a>
+
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn btn-outline btn-sm btn-full">Sign Out</button>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <div class="conversations-panel" id="conversationsPanel">
+                <div class="panel-header">
+                    <h2>Messages</h2>
+                    <a href="/pages/search.html" class="btn-icon" title="Find people">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+                    </a>
+                </div>
+                <div class="search-bar">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B5B5B5" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <input type="text" id="conversationSearch" placeholder="Search conversations...">
+                </div>
+                <div class="online-users-list" id="onlineUsersList" style="display:none;">
+                    <div class="online-users-header">
+                        <span class="online-users-title" id="onlineUsersTitle">Online</span>
+                    </div>
+                    <div class="online-users-items" id="onlineUsersItems"></div>
+                </div>
+                <div class="conversations-list" id="conversationsList">
+                    <div class="loading-state">Loading conversations...</div>
+                </div>
+            </div>
+
+            <div class="chat-panel" id="chatPanel">
+                <div class="chat-placeholder" id="chatPlaceholder">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#B5B5B5" stroke-width="1">
+                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                    </svg>
+                    <h3>Select a conversation</h3>
+                    <p>Choose a conversation from the left or start a new one.</p>
+                </div>
+                <div class="chat-active" id="chatActive" style="display:none;">
+                    <div class="chat-header" id="chatHeader">
+                        <div class="chat-user-info">
+                            <div class="chat-avatar">
+                                <img src="" alt="" id="chatAvatarImg" style="display:none;">
+                                <div class="avatar-placeholder-sm" id="chatAvatarPlaceholder"></div>
+                            </div>
+                            <div>
+                                <span class="chat-user-name" id="chatUserName">User</span>
+                                <span class="chat-user-status" id="chatUserStatus">offline</span>
+                            </div>
+                        </div>
+                        <div class="chat-actions">
+                            <button class="btn-icon" id="searchMessagesBtn" title="Search messages">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="messages-container" id="messagesContainer">
+                        <div class="messages-list" id="messagesList"></div>
+                    </div>
+                    <div class="typing-indicator" id="typingIndicator" style="display:none;">
+                        <span>typing...</span>
+                    </div>
+                    <div class="message-input-area">
+                        <div class="message-input-wrapper">
+                            <textarea class="message-input" id="messageInput" placeholder="Type a message..." rows="1"></textarea>
+                            <div class="input-actions">
+                                <button class="btn-icon" id="uploadImageBtn" title="Send image">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                                </button>
+                                <button class="btn-icon" id="uploadFileBtn" title="Send file">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-send" id="sendBtn" disabled>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <input type="file" id="imageUploadInput" accept="image/*" style="display:none;">
+    <input type="file" id="fileUploadInput" style="display:none;">
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/socket.io.min.js"></script>
+    <script src="/js/socket.js"></script>
+    <script src="/js/chat.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

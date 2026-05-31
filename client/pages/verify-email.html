@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <title>Verify Email - GlobalChat</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card auth-card-sm">
+            <div class="verify-status">
+                <div class="verify-icon" id="verifyIcon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B5B5B5" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 8v4M12 16h.01"/>
+                    </svg>
+                </div>
+                <h1 id="verifyTitle">Verifying your email...</h1>
+                <p id="verifyMessage">Please wait while we verify your email address.</p>
+                <div id="verifySuccess" style="display:none;">
+                    <a href="/pages/login.html" class="btn btn-primary">Sign In</a>
+                </div>
+                <div id="verifyError" style="display:none;">
+                    <a href="/" class="btn btn-outline">Go Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/auth.js"></script>
+</body>
+</html>

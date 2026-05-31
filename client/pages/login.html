@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <title>Sign In - GlobalChat</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <a href="/" class="auth-logo">
+                <svg width="36" height="36" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="#2F2F2F"/>
+                    <path d="M8 20V12L12 8H20L24 12V20L20 24H12L8 20Z" stroke="#FAF7F0" stroke-width="1.5" fill="none"/>
+                    <circle cx="13" cy="16" r="1.5" fill="#FAF7F0"/>
+                    <circle cx="16" cy="16" r="1.5" fill="#FAF7F0"/>
+                    <circle cx="19" cy="16" r="1.5" fill="#FAF7F0"/>
+                </svg>
+                <span>GlobalChat</span>
+            </a>
+            <h1 class="auth-title">Welcome back</h1>
+            <p class="auth-subtitle">Sign in to continue your conversations.</p>
+            <form id="loginForm" class="auth-form" novalidate>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+                    <span class="form-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password" minlength="8">
+                    <span class="form-error"></span>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="/pages/forgot-password.html" class="forgot-link">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="loginBtn">Sign In</button>
+                <div id="loginError" class="alert alert-error" style="display:none;"></div>
+            </form>
+            <p class="auth-footer">
+                Don't have an account? <a href="/pages/register.html">Create one</a>
+            </p>
+        </div>
+    </div>
+    <script src="/js/auth.js"></script>
+</body>
+</html>
