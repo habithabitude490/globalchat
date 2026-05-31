@@ -5,8 +5,8 @@ const fs = require('fs');
 const path = require('path');
 
 const DB_PATH = process.env.VERCEL === '1'
-    ? path.join('/tmp', 'data', 'globalchat.sqlite')
-    : path.join(__dirname, '..', '..', 'data', 'globalchat.sqlite');
+    ? path.join('/tmp', 'data', 'chatworld.sqlite')
+    : path.join(__dirname, '..', '..', 'data', 'chatworld.sqlite');
 let db = null;
 let SQL = null;
 

@@ -70,20 +70,20 @@ async function start() {
         await initializeDatabase();
         server.listen(PORT);
         server.on('listening', () => {
-            console.log(`[GlobalChat] Server running on port ${PORT}`);
-            console.log(`[GlobalChat] Environment: ${process.env.NODE_ENV || 'development'}`);
+            console.log(`[ChatWorld] Server running on port ${PORT}`);
+            console.log(`[ChatWorld] Environment: ${process.env.NODE_ENV || 'development'}`);
         });
         server.on('error', (error) => {
             if (error.code === 'EADDRINUSE') {
-                console.error(`[GlobalChat] Port ${PORT} is already in use.`);
-                console.error('[GlobalChat] Stop the existing server first, then try again.');
+                console.error(`[ChatWorld] Port ${PORT} is already in use.`);
+                console.error('[ChatWorld] Stop the existing server first, then try again.');
             } else {
-                console.error('[GlobalChat] Server error:', error.message);
+                console.error('[ChatWorld] Server error:', error.message);
             }
             server.close(() => process.exit(1));
         });
     } catch (error) {
-        console.error('[GlobalChat] Failed to start server:', error);
+        console.error('[ChatWorld] Failed to start server:', error);
         server.close(() => process.exit(1));
     }
 }

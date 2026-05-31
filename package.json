@@ -1,7 +1,7 @@
 {
-  "name": "global-chat-platform",
+  "name": "chatworld",
   "version": "1.0.0",
-  "description": "Global communication platform - real-time private messaging",
+  "description": "ChatWorld - Global communication platform for real-time private messaging",
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",

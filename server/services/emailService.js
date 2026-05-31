@@ -32,13 +32,13 @@ async function sendVerificationEmail(email, username, token) {
     const verificationUrl = `${process.env.APP_URL || 'http://localhost:3000'}/pages/verify-email.html?token=${token}`;
 
     const mailOptions = {
-        from: `"GlobalChat" <${process.env.EMAIL_FROM || 'noreply@globalchat.com'}>`,
+        from: `"ChatWorld" <${process.env.EMAIL_FROM || 'noreply@chatworld.com'}>`,
         to: email,
         subject: 'Verify your email address',
         html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                 <div style="background-color: #F5F2EB; padding: 30px; text-align: center;">
-                    <h1 style="color: #1C1C1C; margin: 0;">GlobalChat</h1>
+                    <h1 style="color: #1C1C1C; margin: 0;">ChatWorld</h1>
                 </div>
                 <div style="padding: 30px; background-color: #FAF7F0;">
                     <h2 style="color: #2F2F2F;">Welcome, ${username}!</h2>
@@ -53,7 +53,7 @@ async function sendVerificationEmail(email, username, token) {
                     </p>
                 </div>
                 <div style="background-color: #F5F2EB; padding: 20px; text-align: center; font-size: 12px; color: #B5B5B5;">
-                    &copy; 2026 GlobalChat. All rights reserved.
+                    &copy; 2026 ChatWorld. All rights reserved.
                 </div>
             </div>
         `
@@ -78,13 +78,13 @@ async function sendPasswordResetEmail(email, username, token) {
     const resetUrl = `${process.env.APP_URL || 'http://localhost:3000'}/pages/reset-password.html?token=${token}`;
 
     const mailOptions = {
-        from: `"GlobalChat" <${process.env.EMAIL_FROM || 'noreply@globalchat.com'}>`,
+        from: `"ChatWorld" <${process.env.EMAIL_FROM || 'noreply@chatworld.com'}>`,
         to: email,
         subject: 'Reset your password',
         html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                 <div style="background-color: #F5F2EB; padding: 30px; text-align: center;">
-                    <h1 style="color: #1C1C1C; margin: 0;">GlobalChat</h1>
+                    <h1 style="color: #1C1C1C; margin: 0;">ChatWorld</h1>
                 </div>
                 <div style="padding: 30px; background-color: #FAF7F0;">
                     <h2 style="color: #2F2F2F;">Password Reset</h2>
@@ -100,7 +100,7 @@ async function sendPasswordResetEmail(email, username, token) {
                     </p>
                 </div>
                 <div style="background-color: #F5F2EB; padding: 20px; text-align: center; font-size: 12px; color: #B5B5B5;">
-                    &copy; 2026 GlobalChat. All rights reserved.
+                    &copy; 2026 ChatWorld. All rights reserved.
                 </div>
             </div>
         `

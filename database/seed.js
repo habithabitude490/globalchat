@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 
 // Use the same database initialization
-process.env.DB_PATH = path.join(__dirname, '..', 'data', 'globalchat.sqlite');
+process.env.DB_PATH = path.join(__dirname, '..', 'data', 'chatworld.sqlite');
 
 const initSqlJs = require('sql.js');
 const fs = require('fs');

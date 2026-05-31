@@ -3,7 +3,7 @@ const initSqlJs = require('sql.js');
 const fs = require('fs');
 const path = require('path');
 
-const DB_PATH = path.join(__dirname, '..', 'data', 'globalchat.sqlite');
+const DB_PATH = path.join(__dirname, '..', 'data', 'chatworld.sqlite');
 
 async function migrate() {
     const SQL = await initSqlJs();
